@@ -28,7 +28,7 @@ resource "aws_instance" "blog" {
   instance_type = var.instance_type
   vpc_security_group_ids = [module.security-group.security_group_id]
     tags = {
-    Name = "jht-sg-27"
+    Name = "jht-terraforms"
   }
 }
 

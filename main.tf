@@ -24,7 +24,7 @@ data "aws_vpc" "default" {
 resource "aws_instance" "web" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
-
+vpc_security_group_ids = [aws_security_group.blog.id]
   tags = {
     Name = "jht"
   }
@@ -34,6 +34,7 @@ resource "aws_security_group" "blog" {
   name = "blog"
   description = "Allo http and https. Allow everything out"
   vpc_id = data.aws_vpc.default
+
 }
 
 resource "aws_security_group_rule" "blog_http_in" {
@@ -60,7 +61,7 @@ resource "aws_security_group_rule" "blog_everything_out" {
   security_group_id = aws_security_group.blog.id
   from_port = 0
   to_port = 0
-  cidr_blocks = [ -1 ]
+  cidr_blocks = [ "0.0.0.0/0" ]
 }
 ##############################
 

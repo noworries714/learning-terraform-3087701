@@ -22,11 +22,11 @@ resource "aws_instance" "web" {
     Name = "HelloWorld"
   }
 }
-resource "aws_instance" "db"{
-  ami           = data.aws_ami.app_ami.id
-  count = 2
-  instance_type = var.instance_type
-  tags = {
-    Name = "subs"
-  }
-}
+# resource "aws_instance" "db"{
+#   ami           = data.aws_ami.app_ami.id
+#   count = 2
+#   instance_type = var.instance_type
+#   tags = {
+#     Name = "subs"
+#   }
+# }

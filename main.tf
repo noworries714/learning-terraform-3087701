@@ -113,7 +113,7 @@ module "security-group" {
   name = "jht-new"
 
   # vpc_id = data.aws_vpc.default.id
-  vpc_id = module.blog_vpc.vpc_id
+  vpc_id = module.vpc.vpc_id
   ingress_rules = ["http-80-tcp", "https-443-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
   egress_rules =["all-all"]

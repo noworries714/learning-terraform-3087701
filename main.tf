@@ -98,6 +98,22 @@ module "alb" {
   #   bucket = "my-alb-logs"
   # }
 
+ target_groups = {
+    ex-instance = {
+      name_prefix      = "jht-terraform-cloud"
+      protocol         = "HTTP"
+      port             = 80
+      target_type      = "instance"
+      targets = {
+        my_target = {
+          target_id        = aws_instance.blog.id
+          port = 80
+        }
+      }
+     
+    }
+  }
+
   http_tcp_listeners = [ 
     { 
       port = 80
@@ -116,22 +132,7 @@ module "alb" {
   #   }
   # }
 
-  target_groups = {
-    ex-instance = {
-      name_prefix      = "jht-terraform-cloud"
-      protocol         = "HTTP"
-      port             = 80
-      target_type      = "instance"
-      targets = {
-        my_target = {
-          target_id        = aws_instance.blog.id
-          port = 80
-        }
-      }
-     
-    }
-  }
-
+ 
   tags = {
     Environment = "Dev"
 

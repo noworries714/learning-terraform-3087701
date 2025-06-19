@@ -22,3 +22,10 @@ resource "aws_instance" "web" {
     Name = "HelloWorld"
   }
 }
+resource "aws_instance" "db"{
+  count = 2
+  instance_type = var.instance_type
+  tags = {
+    Name = "subs"
+  }
+}

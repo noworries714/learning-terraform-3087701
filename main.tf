@@ -50,15 +50,15 @@ data "aws_vpc" "default" {
 
 ###sg instance###
 
-resource "aws_instance" "blog" {
-  ami = data.aws_ami.app_ami.id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [module.security-group.security_group_id]
-  subnet_id = module.vpc.public_subnets[0]
-    tags = {
-    Name = "jht-terraforms"
-  }
-}
+# resource "aws_instance" "blog" {
+#   ami = data.aws_ami.app_ami.id
+#   instance_type = var.instance_type
+#   vpc_security_group_ids = [module.security-group.security_group_id]
+#   subnet_id = module.vpc.public_subnets[0]
+#     tags = {
+#     Name = "jht-terraforms"
+#   }
+# }
 
 #### ALB ###
 
@@ -141,14 +141,14 @@ resource "aws_instance" "blog" {
 
 ####
 ###############
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.app_ami.id
-  instance_type = var.instance_type
-vpc_security_group_ids = [aws_security_group.blog.id]
-  tags = {
-    Name = "jht"
-  }
-}
+# resource "aws_instance" "web" {
+#   ami           = data.aws_ami.app_ami.id
+#   instance_type = var.instance_type
+# vpc_security_group_ids = [aws_security_group.blog.id]
+#   tags = {
+#     Name = "jht"
+#   }
+# }
 #####Secutiry group ########
 resource "aws_security_group" "blog" {
   name = "blog"

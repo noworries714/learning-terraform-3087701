@@ -62,13 +62,13 @@ resource "aws_instance" "blog" {
 
 #### ALB ###
 
-module "alb" {
-  source = "terraform-aws-modules/alb/aws"
-  version = "~> 6.0"
-  name    = "jht-alb"
-  load_balancer_type = "applicaton"
-  vpc_id  = module.vpc.vpc_id
-  subnets = module.vpc.public_subnets
+# module "alb" {
+  # source = "terraform-aws-modules/alb/aws"
+  # version = "~> 6.0"
+  # name    = "jht-alb"
+  # load_balancer_type = "applicaton"
+  # vpc_id  = module.vpc.vpc_id
+  # subnets = module.vpc.public_subnets
 
   # Security Group
   # security_group_ingress_rules = {
@@ -98,29 +98,29 @@ module "alb" {
   #   bucket = "my-alb-logs"
   # }
 
- target_groups = {
-    ex-instance = {
-      name_prefix      = "jht-terraform-cloud"
-      protocol         = "HTTP"
-      port             = 80
-      target_type      = "instance"
-      targets = {
-        my_target = {
-          target_id        = aws_instance.blog.id
-          port = 80
-        }
-      }
+#  target_groups = {
+#     ex-instance = {
+#       name_prefix      = "jht-terraform-cloud"
+#       protocol         = "HTTP"
+#       port             = 80
+#       target_type      = "instance"
+#       targets = {
+#         my_target = {
+#           target_id        = aws_instance.blog.id
+#           port = 80
+#         }
+#       }
      
-    }
-  }
+#     }
+#   }
 
-  http_tcp_listeners = [ 
-    { 
-      port = 80
-      protocol = http
-      target_group_index = 0
-    } 
-    ]
+  # http_tcp_listeners = [ 
+  #   { 
+  #     port = 80
+  #     protocol = http
+  #     target_group_index = 0
+  #   } 
+  #   ]
   #   ex-https = {
   #     port            = 443
   #     protocol        = "HTTPS"
@@ -133,11 +133,11 @@ module "alb" {
   # }
 
  
-  tags = {
-    Environment = "Dev"
+#   tags = {
+#     Environment = "Dev"
 
-  }
-}
+#   }
+# }
 
 ####
 ###############

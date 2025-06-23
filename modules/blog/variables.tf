@@ -18,7 +18,7 @@ variable "ami_filter" {
 }
 
 variable "environment" {
-  description = "Deployment environment"
+  description = "Deployment environment_jht"
 
   type        = object ({
     name           = string
